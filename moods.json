@@ -1,0 +1,94 @@
+{
+    "chill":{
+        "genres": [
+            "Lo-fi Hip Hop",
+            "Ambient Chillwave",
+            "Acoustic Indie Folk"
+        ],
+        "caption": "Drifting on clouds of sound, softly unwinding. 😌 Let the gentle rhythms carry you to peace. ☁️",
+        "spotify_links": [
+            "https://open.spotify.com/search/lo-fi%20hip%20hop",
+            "https://open.spotify.com/search/ambient%20chillwave",
+            "https://open.spotify.com/search/acoustic%20indie%20folk"
+        ]
+    },
+   "happy":{
+      "genres": [
+        "Indie Pop",
+        "Funk/Soul",
+        "Upbeat Folk Pop"
+      ],
+      "caption": "Sunshine in your soul, a skip in your step. ☀️ Life's a sweet melody, let's dance to every beat! ✨😊",
+      "spotify_links": [
+        "https://open.spotify.com/search/indie%20pop",
+        "https://open.spotify.com/search/funk%20soul",
+        "https://open.spotify.com/search/upbeat%20folk%20pop"
+      ]
+    },
+    "sad":{
+        "genres": [
+          "Acoustic Ballads",
+          "Melancholic Indie",
+          "Ambient Drone"
+        ],
+        "caption": "In the quiet echoes of a tender heart, find solace in the somber art. ☔️ Let the music hold you close. 💔",
+        "spotify_links": [
+          "https://open.spotify.com/search/acoustic%20ballads",
+          "https://open.spotify.com/search/melancholic%20indie",
+          "https://open.spotify.com/search/ambient%20drone"
+        ]
+    },
+    "Energetic":{
+        "genres": [
+        "High-Energy Electronic Dance Music (EDM)",
+        "Upbeat Pop Rock",
+        "Power Metal"
+        ],
+        "caption": "Feel the surge, ignite the fire within! 🔥 Unleash your power, let the vibrant rhythm begin! ⚡️",
+        "spotify_links": [
+            "https://open.spotify.com/search/high-energy%20edm",
+            "https://open.spotify.com/search/upbeat%20pop%20rock",
+            "https://open.spotify.com/search/power%20metal"
+        ]     
+    },
+    "Romantic":{
+        "genres": [
+        "Smooth Jazz",
+        "Classical Love Themes",
+        "R&B Ballads"
+        ],
+        "caption": "Let the music be your love letter, a serenade to the heart. 💌 Feel the passion in every note, as romance fills the air. ❤️‍🔥",
+        "spotify_links": [
+            "https://open.spotify.com/search/smooth%20jazz",
+            "https://open.spotify.com/search/classical%20love%20themes",
+            "https://open.spotify.com/search/r%26b%20ballads"
+        ]     
+    },
+    "Focus":{
+        "genres": [
+        "Instrumental Post-Rock",
+        "Classical Piano",
+        "Cinematic Soundtracks"
+        ],
+        "caption": "Dive deep into concentration, where every note sharpens your focus. 🎧 Let the music guide your mind to clarity and productivity. 📚",
+        "spotify_links": [
+            "https://open.spotify.com/search/instrumental%20post-rock",
+            "https://open.spotify.com/search/classical%20piano",
+            "https://open.spotify.com/search/cinematic%20soundtracks"
+        ]     
+    },
+    "Relax":{
+        "genres": [
+        "Ambient Music",
+        "New Age",
+        "Soft Acoustic"
+        ],
+        "caption": "Melt away the stress, let the soothing sounds embrace you. 🌿 Find your calm in the gentle waves of music. 🧘‍♂️",
+        "spotify_links": [
+            "https://open.spotify.com/search/ambient%20music",
+            "https://open.spotify.com/search/new%20age",
+            "https://open.spotify.com/search/soft%20acoustic"
+        ]     
+    }
+    
+}

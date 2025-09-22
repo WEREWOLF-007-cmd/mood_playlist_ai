@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mood Playlist Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    /* Body + Animated Gradient Background */
+    body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #e0e0e0;
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
+      overflow: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
+    }
+
+    .card {
+      background: rgba(20, 25, 40, 0.85);
+      padding: 30px;
+      border-radius: 20px;
+      width: 420px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 2;
+    }
+
+    select, button {
+      padding: 10px 16px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      background: #1e293b;
+      color: #e0e0e0;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #334155;
+      box-shadow: 0 0 10px #38bdf8;
+    }
+
+    .caption {
+      margin: 16px 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #cbd5e1;
+      text-shadow: 0 0 10px #38bdf8;
+    }
+
+    .spotify-link {
+      display: block;
+      background: #334155;
+      color: #e0e0e0;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-align: center;
+      box-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
+    }
+
+    .spotify-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #38bdf8;
+    }
+
+    /* Floating Emojis */
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(100vh) rotate(0deg);}
+      100% {transform: translateY(-50px) rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🎧 Mood Playlist Generator</h2>
+    <select id="mood">
+      <option value="happy">Happy</option>
+      <option value="sad">Sad</option>
+      <option value="chill">Chill</option>
+      <option value="Energetic">Energetic</option>
+      <option value="Romantic">Romantic</option>
+      <option value="Study Focus">Focus</option>
+      <option value="Relax">Relax</option>
+    </select>
+    <br>
+    <button onclick="generate()">Generate Playlist</button>
+
+    <div class="caption" id="caption"></div>
+    <div id="links"></div>
+  </div>
+
+  <script>
+    const moodColors = {
+      happy: '#1e3a8a',
+      sad: '#0f172a',
+      chill: '#1e293b',
+      Energetic: '#7c2d12',
+      Romentic: '#256B7E',
+      Focus: '#374151',
+      Relax: '#065f46'
+
+    };
+
+    const emojis = ['🎵','🎶','🎧','🎹','🎸','🥁','🎷','🎺'];
+
+    function createEmoji() {
+      const emoji = document.createElement('div');
+      emoji.className = 'emoji';
+      emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      emoji.style.left = Math.random() * window.innerWidth + 'px';
+      emoji.style.fontSize = 20 + Math.random()*30 + 'px';
+      emoji.style.animationDuration = 5 + Math.random()*10 + 's';
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 12000);
+    }
+
+    setInterval(createEmoji, 500);
+
+    async function generate() {
+      const mood = document.getElementById("mood").value;
+      document.body.style.background = moodColors[mood] || '#0f172a';
+
+      const res = await fetch("http://localhost:3000/api/mood", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mood })
+      });
+      const data = await res.json();
+
+      if(data.error) {
+        document.getElementById("caption").textContent = data.error;
+        document.getElementById("links").innerHTML = '';
+        return;
+      }
+
+      document.getElementById("caption").textContent = data.caption;
+
+      const linksDiv = document.getElementById("links");
+      linksDiv.innerHTML = '';
+      data.spotify_links.forEach((link, i) => {
+        const a = document.createElement('a');
+        a.href = link;
+        a.target = "_blank";
+        a.className = 'spotify-link';
+        a.textContent = `${i+1}. ${data.genres[i]}`;
+        linksDiv.appendChild(a);
+      });
+    }
+  </script>
+</body>
+</html>
